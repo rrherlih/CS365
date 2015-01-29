@@ -23,24 +23,34 @@
 # 	print('|' + asciiValues + '|')
 # 	numChars = numChars + 16
 
+import sys
 
 with open('npm-debug.log', 'rb') as f:
 	numBytes = 0
 	while True:
-		line = f.read(16)
+		try:
+			line = f.read(16)
+		except:
+			print(sys.exc_info()[0])
 		if not line:
 			break
 		print("{:08x}".format(numBytes), end='  ')
-		for x in line:
-			print("{:02x}".format(x), end=' ')
-			numBytes = numBytes + 1
+		try:
+			for x in line:
+				print("{:02x}".format(x), end=' ')
+				numBytes = numBytes + 1
+		except:
+			print(sys.exc_info()[0])
 		print('   '*(16-len(line)), end='')
-		print("{: >2}".format('|'), end='')
-		for x in line:
-			if x not in range(32, 127):
-				print('.', end='')
-			else:
-				print(chr(x), end='')
+		print('|', end='')
+		try:
+			for x in line:
+				if x not in range(32, 127):
+					print('.', end='')
+				else:
+					print(chr(x), end='')
+		except:
+			print(sys.exc_info()[0])
 		print('|')
 	print("{:08x}".format(numBytes))
 		
