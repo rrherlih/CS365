@@ -30,12 +30,11 @@ with open('npm-debug.log', 'rb') as f:
 		line = f.read(16)
 		if not line:
 			break
-		print("{:08x}".format(numBytes), end=' ')
+		print("{:08x}".format(numBytes), end='  ')
 		for x in line:
 			print("{:02x}".format(x), end=' ')
-			if not x:
-				print('  ')
 			numBytes = numBytes + 1
+		print('   '*(16-len(line)), end='')
 		print("{: >2}".format('|'), end='')
 		for x in line:
 			if x not in range(32, 127):
