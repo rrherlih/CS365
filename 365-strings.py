@@ -9,16 +9,26 @@ class Strings:
 		self.input_file = input_file
 
 	def len_check(self, l):
+		""" This method takes a string then compares it to the specified
+			minimum length.
+		"""
+
 		if len(l) < self.min_len:
 			return False
 		else:
 			return True
-
-	def open_file(self):
-		pass
 		
 
 	def strings(self):
+		""" This method opens a the file then reads 16 bytes at a time.
+			It then checks to see if a character is printable or a newline
+			and adds it to the str_text string. If its not, it will check
+			the length of str_text with the len_check method and if it is
+			not the specified minimum length, str_text becomes blank. If it
+			is long enough, str_text is printed then set to empty.
+			Once the end of the file is reached, str_text is checked again 
+			and if its long enough its printed.
+		"""
 
 		str_text = ''
 
@@ -56,15 +66,11 @@ class Strings:
 			print(str_text)
 			str_text = ''
 
-	def lil_endian(self):
-		pass
-		# f = open(self.input_file, 'rb')
-		# line = f.read(16)
-		# while line:
-		# 	for x in line:
-
 
 def main():
+	""" Checks if there are the correct amount of arguments.
+		Checks if the second argument is a positive integer.
+	"""
 	if len(sys.argv) == 3:
 		try:
 			x = int(sys.argv[1])
