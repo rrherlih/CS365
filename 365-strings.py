@@ -30,6 +30,7 @@ class Strings:
 			and if its long enough its printed.
 		"""
 
+		count = 0
 		str_text = ''
 
 		try:
@@ -49,12 +50,36 @@ class Strings:
 			for x in line:
 				if x in range(32, 127) or x == 10:
 					str_text += chr(x)
+									
+				elif x == 00:
+					leng = len(str_text) - 1
+					d = ord(str_text[leng])
+					if d not in range (32, 127) or d != 10:
+						if self.len_check(str_text):
+							print(str_text)
+							str_text = ''		
+						else:
+							str_text = ''
+							
+					# if len(str_text) < count:
+					# 	if self.len_check(str_text):
+					# 		print(str_text)
+					# 		str_text = ''
+					# 		count = 0
+					# 	else:
+					# 		str_text = ''
+					# 		count = 0
+					# else:
+					# 	count += 1
 				else:
+
 					if self.len_check(str_text):
 						print(str_text)
 						str_text = ''
+						
 					else:
 						str_text = ''
+						
 				
 			try:
 				line = f.read(16)
